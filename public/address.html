@@ -2,10 +2,16 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>address</title>
+<title>Address</title>
 <style>
-body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box; background-color: black; color: white;}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: black;
+  color: white;
+}
+* {
+  box-sizing: border-box;
+}
 
 input[type=text], input[type=number], input[type=email], select, textarea {
   background-color: #343a38;
@@ -37,7 +43,6 @@ input[type=submit]:hover {
 
 .container {
   border-radius: 5px;
-  background-color: none;
   padding: 20px;
 }
 
@@ -46,10 +51,8 @@ label {
   margin: 12px auto 4px auto;
   width: 280px;
   text-align: left;
-  color: white;
   font-size: 14px;
 }
-
 </style>
 </head>
 <body>
@@ -67,7 +70,6 @@ label {
 
     <label for="email">Email</label>
     <input type="email" id="email" name="email" placeholder="Enter your email" required>
-
 
     <label for="house">House No.</label>
     <input type="text" id="house" name="house" placeholder="Your house number.." required>
@@ -99,23 +101,25 @@ label {
       address: `${document.getElementById('house').value}, ${document.getElementById('street').value}, ${document.getElementById('city').value}, ${document.getElementById('state').value} - ${document.getElementById('pincode').value}`
     };
 
-    const res = await fetch("/submit-address", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(data),
-});
+    try {
+      const res = await fetch("/submit-address", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-    const data = await res.json();
-    if (data.success) {
-      window.location.href = 'order.html';
-    } else {
-      alert('Error sending data!');
+      const result = await res.json();
+      if (result.success) {
+        window.location.href = 'order.html';
+      } else {
+        alert('Error sending data!');
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Failed to submit. Please try again.");
     }
   });
 </script>
-
-  
-
 
 </body>
 </html>
