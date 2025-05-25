@@ -99,11 +99,11 @@ label {
       address: `${document.getElementById('house').value}, ${document.getElementById('street').value}, ${document.getElementById('city').value}, ${document.getElementById('state').value} - ${document.getElementById('pincode').value}`
     };
 
-    const res = await fetch('http://localhost:3000/submit-address', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
-    });
+    const res = await fetch("/submit-address", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(data),
+});
 
     const data = await res.json();
     if (data.success) {
