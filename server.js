@@ -31,7 +31,9 @@ app.post("/submit-address", async (req, res) => {
   }
 });
 
-app.listen(5502, () => {
-  console.log(`Server is listening at http://localhost:5502`);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
+
   
