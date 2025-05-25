@@ -32,7 +32,7 @@ app.post("/submit-address", async (req, res) => {
 });
 
 // ✅ Use the dynamic port provided by Render or fallback to 3000 locally
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
